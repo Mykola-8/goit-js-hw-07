@@ -12,13 +12,32 @@ body {
   color: #212121;
   line-height: 1.5;
 }
-
-input {
-  padding: 8px;
-  font: inherit;
+ul {
+  padding-left: 0;
+  max-width: 1200;
 }
 
-button {
-  padding: 8px 12px;
-  cursor: pointer;
+img {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+.item {
+  list-style-type: none;
+}
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#name-input {
+  color: orange;
+}
+
+#name-output {
+  color: orange;
+  text-shadow: 2px 2px 2px grey;
 }

@@ -7,15 +7,14 @@ function handleSubmit(event) {
   const email = form.elements.email.value.trim();
   const password = form.elements.password.value.trim();
 
-  if (email !== '' && password !== '') {
-    alert('Your registration is successful!');
-    const login = {
-      email,
-      password,
-    };
-    console.log(login);
-    form.reset();
-  } else {
-    alert('All form fields must be filled in!');
+  if (email === '' || password === '') {
+    alert('All form fields must be filled in');
+    return;
   }
+  const dataLoginPassword = {
+    email: email,
+    password: password,
+  };
+  console.log(dataLoginPassword);
+  registerForm.reset();
 }

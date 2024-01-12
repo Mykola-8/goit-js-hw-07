@@ -1,41 +1,35 @@
-const boxesRef = document.querySelector('#boxes');
-const btnCreateRef = document.querySelector('button[data-create]');
-const btnDestroyRef = document.querySelector('button[data-destroy]');
-const inputRef = document.querySelector('input');
+document.addEventListener('DOMContentLoaded', function () {
+  const inputNumber = document.querySelector('input');
+  const buttonCreate = document.querySelector('[data-create]');
+  const buttonDestroy = document.querySelector('[data-destroy]');
+  const newBox = document.querySelector('#boxes');
 
-function getRandomHexColor() {
-  return `#${Math.floor(Math.random() * 16777215)
-    .toString(16)
-    .padStart(6, 0)}`;
-}
+  function getRandomHexColor() {
+    return `#${Math.floor(Math.random() * 16777215)
+      .toString(16)
+      .padStart(6, '0')}`;
+  }
 
-function createBoxes(amount) {
-  for (let i = 0; i < amount; i += 1) {
-    const box = document.createElement('div');
-    Object.assign(box.style, {
-      width: parseInt('30px') + i * 10 + 'px',
-      height: parseInt('30px') + i * 10 + 'px',
-      backgroundColor: getRandomHexColor(),
-    });
-    boxesRef.append(box);
+  function createBoxes(amount) {
+    let size = 30;
+    for (let i = 0; i < amount; i++) {
+      const box = document.createElement('div');
+      size += 10;
+      box.style.width = `${size}px`;
+      box.style.height = `${size}px`;
+      box.style.backgroundColor = getRandomHexColor();
+      newBox.appendChild(box);
+    }
   }
-}
 
-btnCreateRef.addEventListener('click', () => {
-  if (boxesRef.querySelector('div') !== null) {
-    boxesRef.innerHTML = '';
-  }
-  if (inputRef.value >= 1 && inputRef.value <= 100) {
-    createBoxes(inputRef.value);
-    inputRef.value = '';
-  } else {
-    alert('Please enter a number between 1 and 100.');
-  }
+  buttonCreate.addEventListener('click', () => {
+    const amount = inputNumber.value;
+    newBox.innerHTML = ''; // Очищаємо попередні блоки
+    createBoxes(amount);
+    inputNumber.value = '';
+  });
+
+  buttonDestroy.addEventListener('click', () => {
+    newBox.innerHTML = '';
+  });
 });
-
-function destroyBoxes() {
-  boxesRef.innerHTML = '';
-  inputRef.value = '';
-}
-
-btnDestroyRef.addEventListener('click', destroyBoxes);

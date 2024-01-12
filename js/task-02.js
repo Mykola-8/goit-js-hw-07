@@ -24,22 +24,18 @@ const images = [
     alt: 'Zebras on Zebra',
   },
 ];
+const galleryList = document.querySelector('.gallery');
 
-const gallery = document.querySelector('.gallery');
+for (let i = 0; i < images.length; i++) {
+  const listItem = document.createElement('li');
+  const image = document.createElement('img');
+  image.width = '360';
+  image.height = '300';
+  image.setAttribute('class', 'photo');
 
-const listItems = images.reduce(
-  (html, img) =>
-    html + `<li> <img src="${img.url}" alt="${img.alt}" width="400" /></li>`,
-  ''
-);
+  image.src = images[i].url;
+  image.alt = images[i].alt;
 
-gallery.innerHTML = listItems;
-
-const items = gallery.querySelectorAll('li');
-items.forEach(item => item.classList.add('item'));
-
-// const listItems = images
-//   .map(
-//     (img) => `<li> <img src="${img.url}" alt="${img.alt}" width="300" /></li>`
-//   )
-//   .join("");
+  listItem.appendChild(image);
+  galleryList.appendChild(listItem);
+}
